@@ -1,4 +1,4 @@
-# Trabalho 2 - FSE - Controle de Temperatura de Ambiente Controlado / Servidor Central
+# Trabalho 2 - FSE - Sistema de Automação Residencial / Servidor Central
 aluno: Lucas Penido Antunes  
 matrícula: 16/0013143
 
@@ -24,7 +24,7 @@ Para limpar o projeto:
 
 `make clean`
 
-Obs: Os dados serão armazenados no arquivo "dados_temperatura.csv" na mesma pasta.
+Obs: Os dados serão armazenados no arquivo "dados_acionamento.csv" na mesma pasta.
 
 ### Utilização
 
