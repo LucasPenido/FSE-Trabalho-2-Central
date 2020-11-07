@@ -1,0 +1,16 @@
+DataHora, Tipo Acionamento, Numero Dispositivo, Estado
+07/11/2020 17:20:50,Dispositivo,17,Acionou
+07/11/2020 17:20:51,Dispositivo,18,Acionou
+07/11/2020 17:20:51,Dispositivo,27,Acionou
+07/11/2020 17:20:52,Alarme,1,Acionou
+07/11/2020 17:20:53,Alarme,1,Desacionou
+07/11/2020 17:21:00,Dispositivo,17,Desacionou
+07/11/2020 17:21:01,Dispositivo,18,Desacionou
+07/11/2020 17:21:01,Dispositivo,27,Desacionou
+07/11/2020 17:21:07,Alarme,1,Acionou
+07/11/2020 17:21:09,Alarme,1,Disparado
+07/11/2020 17:21:12,Alarme,1,Desacionou
+07/11/2020 17:22:13,Dispositivo,17,Acionou
+07/11/2020 17:22:13,Dispositivo,18,Acionou
+07/11/2020 17:22:14,Dispositivo,27,Acionou
+07/11/2020 17:22:17,Dispositivo,17,Desacionou

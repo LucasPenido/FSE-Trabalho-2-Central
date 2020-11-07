@@ -1,14 +1,16 @@
 #include "servidor_central.h"
 
-EstadoDispositivos *estadoDispositivos;
-EstadoSensores *estadoSensores;
+EstadoDispositivos estadoDispositivos;
+EstadoSensores estadoSensores;
+TemperaturaUmidade temperaturaUmidade;
 
 int socketServCentralfd, clienteSocketfd;
 
 void TrataClienteDistribuido(int sockfd) {
-    int n;
+    TipoConexao tipoConexao;
     uint8_t line[512];
-    TipoConexao *tipoConexao;
+    int n;
+
     while (1) {
         bzero(line, 512);
         n = recv(sockfd, line, 511, 0);
@@ -19,15 +21,14 @@ void TrataClienteDistribuido(int sockfd) {
             printf("erro em ler do socket\n");
             exit(1);
         } else {
-            tipoConexao = (TipoConexao *)line;
-
-            if (tipoConexao->tipoConexao == CONEXAO_TIPO_DISPOSITIVO) {
+            tipoConexao = *(TipoConexao *)line;
+            if (tipoConexao.tipoConexao == CONEXAO_TIPO_DISPOSITIVO) {
                 // Trata dispositivos
-                estadoDispositivos = (EstadoDispositivos *)(line + sizeof(tipoConexao));
-
-            } else if (tipoConexao->tipoConexao == CONEXAO_TIPO_SENSOR) {
+                estadoDispositivos = *(EstadoDispositivos *)(line + sizeof(&tipoConexao));
+                temperaturaUmidade = *(TemperaturaUmidade *)(line + sizeof(&tipoConexao) + sizeof(&estadoDispositivos));
+            } else if (tipoConexao.tipoConexao == CONEXAO_TIPO_SENSOR) {
                 // Trata sensor
-                estadoSensores = (EstadoSensores *)(line + sizeof(tipoConexao));
+                estadoSensores = *(EstadoSensores *)(line + sizeof(&tipoConexao));
             }
         }
     }
@@ -39,7 +40,6 @@ void *realizaConexaoClienteDistribuido() {
 
     while (1) {
         cliLen = sizeof(struct sockaddr_in);
-        printf("Aguardando Cliente Distribuído estar disponível\n");
         clienteSocketfd = accept(socketServCentralfd, (struct sockaddr *)&clienteAddr, (socklen_t *)&cliLen);
         if (clienteSocketfd < 0)
             printf("ERROR on accept");

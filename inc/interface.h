@@ -7,7 +7,9 @@
 
 #include "cliente_central.h"
 #include "informacoes_dispositivos.h"
+#include "arquivo.h"
 
 void *menuInformacoes();
+void iniciaNcurses();
 
 #endif /* INTERFACE_H */

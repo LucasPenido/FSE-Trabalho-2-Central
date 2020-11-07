@@ -7,8 +7,8 @@
 #define LAMPADA_04 22          // Lâmpada Quarto 02
 #define AR_CONDICIONADO_01 23  // Ar Condicionado Quarto 01
 #define AR_CONDICIONADO_02 24  // Ar Condicionado Quarto 02
-#define SENSOR_PRESENSA_01 25  // Sensor Presensa Sala
-#define SENSOR_PRESENSA_02 26  // Sensor Presensa Cozinha
+#define SENSOR_PRESENCA_01 25  // Sensor Presenca Sala
+#define SENSOR_PRESENCA_02 26  // Sensor Presenca Cozinha
 #define SENSOR_ABERTURA_01 5   // Sensor Abertura Porta Cozinha
 #define SENSOR_ABERTURA_02 6   // Sensor Abertura Janela Cozinha
 #define SENSOR_ABERTURA_03 12  // Sensor Abertura Porta Sala
@@ -19,15 +19,19 @@
 
 typedef struct
 {
+    float temperatura;
+    float umidade;
+} __attribute__((packed)) TemperaturaUmidade;
+
+typedef struct
+{
     unsigned int estadoLampada01 : 1;
     unsigned int estadoLampada02 : 1;
     unsigned int estadoLampada03 : 1;
     unsigned int estadoLampada04 : 1;
     unsigned int estadoArCondicionado01 : 1;
     unsigned int estadoArCondicionado02 : 1;
-    float temperatura;
-    float humidade;
-} EstadoDispositivos;
+} __attribute__((packed)) EstadoDispositivos;
 
 typedef struct
 {
@@ -41,8 +45,10 @@ typedef struct
     unsigned int estadoSensorAbertura06 : 1;
 } __attribute__((packed)) EstadoSensores;
 
-extern EstadoSensores *estadoSensores;
-extern EstadoDispositivos *estadoDispositivos;
+extern EstadoSensores estadoSensores;
+extern EstadoDispositivos estadoDispositivos;
+extern TemperaturaUmidade temperaturaUmidade;
 extern int alarme;
+extern int intruso;
 
 #endif

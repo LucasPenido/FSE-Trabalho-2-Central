@@ -46,7 +46,7 @@ void conectarServidorDistribuido() {
     servaddr.sin_addr.s_addr = inet_addr(SERV_DISTRIBUIDO_ADDR);
     servaddr.sin_port = htons(SERV_DISTRIBUIDO_TCP_PORT);
 
-    printf("Aguardando Servidor Distribuido estar disponível\n");
+    printf("Aguargando Servidor Distribuído estar disponível\n");
     while (1) {
         if (connect(socketServDistribuidofd, (struct sockaddr *)&servaddr, sizeof(servaddr)) == 0) {
             system("clear");
